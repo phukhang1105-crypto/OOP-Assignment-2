@@ -1,2 +1,39 @@
-public class Square {
+public class Square extends Shape {
+    private double side;
+
+    public Square(Coordinates coord, double side) {
+        super(4, coord); // 4 sides
+        this.side = side;
+    }
+
+    @Override
+    public double getArea() {
+        return side * side;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 4 * side;
+    }
+
+    @Override
+    public void scale(int factor, boolean sign) {
+
+        position.scale(factor, sign);
+
+
+        if (sign) {
+            side *= factor;
+        } else {
+            side /= factor;
+        }
+    }
+
+    @Override
+    public String display() {
+        return "Square [" + position.display() +
+                ", Side=" + side +
+                ", Area=" + getArea() +
+                ", Perimeter=" + getPerimeter() + "]";
+    }
 }
