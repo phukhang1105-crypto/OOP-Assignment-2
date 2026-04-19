@@ -113,77 +113,73 @@ public class ShapeManagement {
 
             switch (type) {
 
-                case 1:
+                case 1: // Rectangle
                     System.out.print("Enter x and y: ");
                     int rx = sc.nextInt();
                     int ry = sc.nextInt();
+
                     System.out.print("Enter width and length: ");
                     double width = sc.nextDouble();
                     double length = sc.nextDouble();
 
-                    shapeList.addShape(new Rectangle(new Coordinates(rx, ry), width, length));
+                    shapeList.addShape(new Rectangle(
+                            new Coordinates(rx, ry), width, length));
                     System.out.println("Rectangle added.");
                     break;
 
-                case 2:
-                    if (shapeList.getNumberOfShapes() == 0) {
-                        System.out.println("No shapes available to remove.");
-                        break;
-                    }
+                case 2: // Circle
+                    System.out.print("Enter x and y (center): ");
+                    int cx = sc.nextInt();
+                    int cy = sc.nextInt();
 
-                    System.out.println(shapeList.display());
-                    System.out.print("Enter position to remove: ");
-                    int posRemove = sc.nextInt();
+                    System.out.print("Enter radius: ");
+                    double radius = sc.nextDouble();
 
-                    if (posRemove < 0 || posRemove >= shapeList.getNumberOfShapes()) {
-                        System.out.println("Error: Position does not exist.");
-                    } else {
-                        Shape removed = shapeList.removeShape(posRemove);
-                        System.out.println("Shape removed successfully.");
-                    }
+                    shapeList.addShape(new Circle(
+                            new Coordinates(cx, cy), radius));
+                    System.out.println("Circle added.");
                     break;
 
-                case 3:
-                    if (shapeList.getNumberOfShapes() == 0) {
-                        System.out.println("No shapes in the list.");
-                        break;
-                    }
+                case 3: // Triangle
+                    System.out.print("Enter x1 y1: ");
+                    int x1 = sc.nextInt();
+                    int y1 = sc.nextInt();
 
-                    System.out.println(shapeList.display());
-                    System.out.print("Enter position: ");
-                    int posInfo = sc.nextInt();
+                    System.out.print("Enter x2 y2: ");
+                    int x2 = sc.nextInt();
+                    int y2 = sc.nextInt();
 
-                    if (posInfo < 0 || posInfo >= shapeList.getNumberOfShapes()) {
-                        System.out.println("Error: Invalid position.");
-                    } else {
-                        Shape s = shapeList.getShape(posInfo);
-                        System.out.println(s.display());
-                    }
+                    System.out.print("Enter x3 y3: ");
+                    int x3 = sc.nextInt();
+                    int y3 = sc.nextInt();
+
+                    shapeList.addShape(new Triangle(
+                            new Coordinates(x1, y1),
+                            new Coordinates(x2, y2),
+                            new Coordinates(x3, y3)));
+                    System.out.println("Triangle added.");
                     break;
 
-                case 4:
-                    if (shapeList.getNumberOfShapes() == 0) {
-                        System.out.println("No shapes in the list.");
-                        break;
-                    }
+                case 4: // Square
+                    System.out.print("Enter x and y: ");
+                    int sx = sc.nextInt();
+                    int sy = sc.nextInt();
 
-                    System.out.println(shapeList.display());
-                    System.out.print("Enter position: ");
-                    int posCalc = sc.nextInt();
+                    System.out.print("Enter side length: ");
+                    double side = sc.nextDouble();
 
-                    if (posCalc < 0 || posCalc >= shapeList.getNumberOfShapes()) {
-                        System.out.println("Error: Cannot calculate. Position does not exist.");
-                    } else {
-                        Shape shape = shapeList.getShape(posCalc);
-                        System.out.println("Area: " + shape.getArea());
-                        System.out.println("Perimeter: " + shape.getPerimeter());
-                    }
+                    shapeList.addShape(new Square(
+                            new Coordinates(sx, sy), side));
+                    System.out.println("Square added.");
                     break;
+
+                default:
+                    System.out.println("Invalid shape type.");
             }
+
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Please enter correct values.");
             sc.nextLine();
         }
     }
-
 }
